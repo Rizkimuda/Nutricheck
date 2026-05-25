@@ -309,8 +309,8 @@ class _ScanScreenState extends State<ScanScreen> {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              _barcodeController.text = '089686010824';
-                              _handleBarcode('089686010824');
+                              _barcodeController.text = '5285000390602';
+                              _handleBarcode('5285000390602');
                             },
                             child: Container(
                               padding: const EdgeInsets.all(8),
@@ -320,7 +320,7 @@ class _ScanScreenState extends State<ScanScreen> {
                                 border: Border.all(color: Colors.grey.shade800),
                               ),
                               child: Text(
-                                'Indomie\n089686010824',
+                                'Indomie\n5285000390602',
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.outfit(color: Colors.grey.shade400, fontSize: 10),
                               ),

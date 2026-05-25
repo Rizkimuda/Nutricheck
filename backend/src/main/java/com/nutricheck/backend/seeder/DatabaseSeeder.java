@@ -140,7 +140,7 @@ public class DatabaseSeeder implements CommandLineRunner {
 
         Produk indomie = Produk.builder()
             .idProduk(UUID.fromString("6f8d070b-9dfd-4ba4-9721-c5bfae18374d"))
-            .barcode("089686010824")
+            .barcode("5285000390602")
             .namaProduk("INDOMIE MI INSTAN GORENG")
             .kategori("Makanan Instan")
             .harga(3100.0)
