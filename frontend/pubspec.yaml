@@ -1,0 +1,27 @@
+name: frontend
+description: NutriCheck Flutter App
+version: 1.0.0+1
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  provider: ^6.1.2
+  http: ^1.2.1
+  mobile_scanner: ^5.1.1
+  google_fonts: ^6.2.1
+  intl: ^0.19.0
+  google_mlkit_text_recognition: ^0.13.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
