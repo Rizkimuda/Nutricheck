@@ -125,96 +125,99 @@ class _SearchScreenState extends State<SearchScreen> {
                             return Container(
                               margin: const EdgeInsets.only(bottom: 12),
                               decoration: BoxDecoration(
-                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(16),
                                 border: Border.all(color: const Color(0xFFE2E8F0)),
                               ),
-                              child: ListTile(
-                                contentPadding: const EdgeInsets.all(12),
-                                leading: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.network(
-                                    item['gambarProduk'] ??
-                                        'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=100',
-                                    width: 50,
-                                    height: 50,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (_, __, ___) => Container(
+                              child: Material(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(16),
+                                child: ListTile(
+                                  contentPadding: const EdgeInsets.all(12),
+                                  leading: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
+                                      item['gambarProduk'] ??
+                                          'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=100',
                                       width: 50,
                                       height: 50,
-                                      color: Colors.grey.shade100,
-                                      child: const Icon(Icons.fastfood_rounded,
-                                          color: Color(0xFF1E3A8A)),
-                                    ),
-                                  ),
-                                ),
-                                title: Text(
-                                  item['namaProduk'] ?? 'Produk',
-                                  style: GoogleFonts.outfit(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                    color: const Color(0xFF1E293B),
-                                  ),
-                                ),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      'Barcode: ${item['barcode']}',
-                                      style: GoogleFonts.outfit(
-                                        fontSize: 12,
-                                        color: Colors.grey.shade500,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (_, __, ___) => Container(
+                                        width: 50,
+                                        height: 50,
+                                        color: Colors.grey.shade100,
+                                        child: const Icon(Icons.fastfood_rounded,
+                                            color: Color(0xFF1E3A8A)),
                                       ),
                                     ),
-                                    const SizedBox(height: 2),
-                                    Text(
-                                      'Rp ${item['harga']}',
-                                      style: GoogleFonts.outfit(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w600,
-                                        color: const Color(0xFF3B82F6),
-                                      ),
+                                  ),
+                                  title: Text(
+                                    item['namaProduk'] ?? 'Produk',
+                                    style: GoogleFonts.outfit(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: const Color(0xFF1E293B),
                                     ),
-                                  ],
-                                ),
-                                trailing: const Icon(
-                                  Icons.chevron_right_rounded,
-                                  color: Color(0xFF1E3A8A),
-                                ),
-                                onTap: () async {
-                                  final navigator = Navigator.of(context);
-                                  final scaffoldMessenger = ScaffoldMessenger.of(context);
-                                  showDialog(
-                                    context: context,
-                                    barrierDismissible: false,
-                                    builder: (context) => const Center(
-                                      child: CircularProgressIndicator(),
-                                    ),
-                                  );
-
-                                  final analysisResult = await provider
-                                      .scanProductBarcode(item['barcode']);
-
-                                  navigator.pop();
-
-                                  if (analysisResult != null) {
-                                    navigator.push(
-                                      MaterialPageRoute(
-                                        builder: (context) => ProductDetailScreen(
-                                          analysisResult: analysisResult,
+                                  ),
+                                  subtitle: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        'Barcode: ${item['barcode']}',
+                                        style: GoogleFonts.outfit(
+                                          fontSize: 12,
+                                          color: Colors.grey.shade500,
                                         ),
                                       ),
-                                    );
-                                  } else {
-                                    scaffoldMessenger.showSnackBar(
-                                      const SnackBar(
-                                        content: Text('Gagal menganalisis produk'),
-                                        backgroundColor: Colors.red,
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        'Rp ${item['harga']}',
+                                        style: GoogleFonts.outfit(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w600,
+                                          color: const Color(0xFF3B82F6),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  trailing: const Icon(
+                                    Icons.chevron_right_rounded,
+                                    color: Color(0xFF1E3A8A),
+                                  ),
+                                  onTap: () async {
+                                    final navigator = Navigator.of(context);
+                                    final scaffoldMessenger = ScaffoldMessenger.of(context);
+                                    showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (context) => const Center(
+                                        child: CircularProgressIndicator(),
                                       ),
                                     );
-                                  }
-                                },
+
+                                    final analysisResult = await provider
+                                        .scanProductBarcode(item['barcode']);
+
+                                    navigator.pop();
+
+                                    if (analysisResult != null) {
+                                      navigator.push(
+                                        MaterialPageRoute(
+                                          builder: (context) => ProductDetailScreen(
+                                            analysisResult: analysisResult,
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      scaffoldMessenger.showSnackBar(
+                                        const SnackBar(
+                                          content: Text('Gagal menganalisis produk'),
+                                          backgroundColor: Colors.red,
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
                               ),
                             );
                           },
